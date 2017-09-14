@@ -1,0 +1,70 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		String registers[]=new String[7] ;
+		boolean [] flag=new boolean[8];
+		for(int i=0;i<7;i++) {
+			registers[i]="00";
+		}
+		HashMap<String, String> memory=new HashMap();
+		String file_Name;
+		switch(args.length) {
+			case 0:
+				BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+				file_Name="abc.txt";
+				FileWriter fw=new FileWriter("abc.txt");
+				String text="";
+				String newLine = System.getProperty("line.separator");
+				while(!text.equals("HLT")) {
+					text=br.readLine();
+					
+					fw.write(text);
+					fw.write(newLine);
+				}
+				fw.close();
+				br.close();
+				break;
+			
+			default: 
+				if(args.length>2) {
+					System.out.println("Invalid Arguements");
+					return;
+				}
+				else {
+					file_Name=args[0];
+				}
+		}
+		
+		BufferedReader br=new BufferedReader(new FileReader(file_Name));
+		String line;
+		Execution_Commands e=new Execution_Commands();
+		int i=0;
+		while((line=br.readLine())!=null) {
+			i++;
+			boolean y=e.checkCommands(line, registers, flag, memory);
+			if(!y) {
+				System.out.println("Error in line "+i);
+			}
+			
+		}
+		System.out.println("Registers");
+		for(String q:registers) {
+			System.out.println(q);
+		}
+		System.out.println("Flags");
+		for(boolean q:flag) {
+			System.out.println(q);
+		}
+
+	}
+
+}

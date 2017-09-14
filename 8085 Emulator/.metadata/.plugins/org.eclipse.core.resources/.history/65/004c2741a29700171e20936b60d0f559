@@ -1,0 +1,17 @@
+import java.util.HashMap;
+
+public class Execution_Commands {
+	public static boolean checkCommands(String line) {
+		String [] line_Words=line.split(" ");
+		switch(line_Words[0]) {
+			case "MOV": System.out.println("sagar");
+						break;
+			case "MVI": System.out.println("salal");
+						break;
+		}
+		return true;
+	}
+	public static void main(String[]arg) {
+		checkCommands("MVI sagar");
+	}
+}

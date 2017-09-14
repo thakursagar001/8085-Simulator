@@ -1,0 +1,13 @@
+
+public class check {
+	public static void main(String [] args) {
+		int value=255;
+		String a=Integer.toBinaryString(value);
+		String q="";
+		for(int i=0;i<(8-a.length());i++) {
+			q=q+"0";
+		}
+		a=q+a;
+		System.out.println(a);
+	}
+}

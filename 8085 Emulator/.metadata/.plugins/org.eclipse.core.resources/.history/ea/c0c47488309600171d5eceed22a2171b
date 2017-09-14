@@ -1,0 +1,34 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		String file_Name;
+		switch(args.length) {
+			case 0:
+				file_Name="abc.txt";
+				BufferedWriter bw=new BufferedWriter(new FileWriter("abc.txt"));
+				String text="";
+				while(!text.equals("HLT")) {
+					text=br.readLine();
+					bw.write(text);
+				}
+				break;
+			
+			default: 
+				if(args.length>2) {
+					System.out.println("Invalid Arguements");
+				}
+				else {
+					file_Name=args[0];
+				}
+		}
+
+	}
+
+}
